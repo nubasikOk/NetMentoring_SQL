@@ -1,6 +1,8 @@
-SELECT EmployeesT.[FirstName] AS 'Seller'
-    ,(SELECT ManagersT.[FirstName] 
-        FROM [Employees] ManagersT 
-        WHERE ManagersT.[EmployeeID] = EmployeesT.[ReportsTo]) 
-    AS 'Manager'
-FROM [Employees] EmployeesT
+--По таблице Employees найти для каждого продавца его руководителя.
+
+select 
+	concat(empl.LastName, ' ', empl.FirstName) as 'Employee', 
+	concat(man.LastName, ' ', man.FirstName) as 'Manager' 
+from Employees empl, Employees man
+where empl.ReportsTo = man.EmployeeID
+order by 'Employee', 'Manager' 
