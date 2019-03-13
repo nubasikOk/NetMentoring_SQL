@@ -11,5 +11,5 @@
  Select e.FirstName+e.LastName as Seller, count(o.EmployeeID) as Amount
  from orders o,Employees e
  where o.EmployeeID=e.EmployeeID
- group by e.FirstName+e.LastName
+ group by e.EmployeeID
  order by Amount desc

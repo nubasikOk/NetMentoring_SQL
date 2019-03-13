@@ -2,10 +2,10 @@
 --Принять во внимание, что у некоторых заказчиков нет заказов, но они также должны быть выведены в результатах запроса. 
 --Упорядочить результаты запроса по возрастанию количества заказов.
 
-SELECT CustomersT.ContactName,
+SELECT (Select ContactName from Customers where CustomerID=CustomersT.CustomerID) as Customer,
        COUNT(OrdersT.OrderId) AS 'OrdersCount'
 FROM Customers CustomersT 
     LEFT JOIN Orders OrdersT 
         ON CustomersT.CustomerId = OrdersT.CustomerId
-GROUP BY CustomersT.ContactName
+GROUP BY CustomersT.CustomerID
 ORDER BY 'OrdersCount'
